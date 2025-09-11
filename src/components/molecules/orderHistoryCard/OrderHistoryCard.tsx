@@ -113,7 +113,6 @@ const OrderHistoryCard: React.FC<
     
     const parsedDate = new Date(dateString);
     if (isNaN(parsedDate.getTime())) {
-      console.error("Invalid date format:", dateString);
       return "Invalid date";
     }
 
@@ -231,7 +230,6 @@ const OrderHistoryCard: React.FC<
           onSuccess: (data) => {
             setIsDowngradePopupOpen(false);
             setPlanChangeError("");
-            console.log("Upgrade plan response:", data);
             if(data.statusCode === 200) {
               toast.success(data.message);
               refetchSubscriptionDetails?.();
@@ -358,8 +356,6 @@ const OrderHistoryCard: React.FC<
       },
       {
         onSuccess: (data) => {
-          console.log("Re order success",data);
-          // setReOrderPlanError("");
           if(data.statusCode === 200) {
             toast.success(data.message);
             const noOfPets = petInfoList?.length;
@@ -727,7 +723,6 @@ const OrderHistoryCard: React.FC<
           if (subId && petId && userId) {
             handleChangeProtein(subId, petId, userId, proteinType);
           } else {
-            console.error("subId, petId, or userId is undefined");
             setChangeProteinError("subId, petId, or userId is undefined");
           }
           // API call to update protein
@@ -762,7 +757,6 @@ const OrderHistoryCard: React.FC<
           // API call to cancel with reason
           // setCancelReason(reason);
           handleCancel(reason);
-          console.log(`Cancellation reason: ${reason}`);
         }}
       />
 
@@ -772,7 +766,6 @@ const OrderHistoryCard: React.FC<
         formattedPossiblePauseDate={formattedPossiblePauseDate}
         onClose={() => setIsPausePopupOpen(false)}
         onConfirm={(dateRange: { from: string; to: string }, weeks: number, reason) => {
-          console.log(`Date range new Paused from ${dateRange.from} to ${dateRange.to}`);
           handlePausePlan(dateRange, weeks, reason);
           setIsPausePopupOpen(false);
         }}

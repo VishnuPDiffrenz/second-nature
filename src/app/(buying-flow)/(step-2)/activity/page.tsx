@@ -41,7 +41,6 @@ export default function Page() {
     }
   },[activityLevel])
 
-  console.log("Selected pet in activity page is", selectedPet);
   const softEase = [0.33, 1, 0.68, 1] as [number, number, number, number];
 
   return (

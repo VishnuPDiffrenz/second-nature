@@ -12,8 +12,6 @@ export default function PersonalInformation() {
 
   const { userDetails } = useUserStore();
   const { data: getUserDetails, isLoading } = useGetUserDetails(userDetails.userId);
-  console.log("User details from get customer by ID API", getUserDetails);
-
   const [ isEditing, setIsEditing ] = useState(false);
 
   return (

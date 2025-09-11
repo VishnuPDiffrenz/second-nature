@@ -127,8 +127,6 @@ export default function PasswordManagement() {
         },
         {
           onSuccess: (response) => {
-            console.log("Password update successful", response);
-
             if (response?.statusCode === 200) {
               toast.success(response.message || "Password updated successfully");
             } else {
@@ -145,23 +143,15 @@ export default function PasswordManagement() {
               newPassword: false,
               confirmNewPassword: false,
             });
-
-            // setSuccessMessage("Password updated successfully");
           },
           onError: (error: unknown) => {
             if (error instanceof Error) {
-              // If error is a custom error with a 'response' property
               const apiError = error as { response?: { data?: { message?: string } } };
               const message = apiError.response?.data?.message || error.message || "Password update failed";
-              console.error("Password update failed", message);
               toast.error(message || "Password update failed");
-              // setErrorMessage(message);
             } else {
-              console.error("Password update failed", error);
               toast.error("Password update failed");
-              // setErrorMessage("Password update failed");
             }
-            // Handle API specific errors
           },
         }
       );

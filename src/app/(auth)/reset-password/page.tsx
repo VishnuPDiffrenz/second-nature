@@ -28,10 +28,9 @@ export default function Page() {
         onSuccess: () => {
           setIsLinkSent(true);
         },
-        onError: (error) => {
+        onError: () => {
           setIsLinkSent(false);
           setMailSendError("Error in sending mail");
-          console.log(error);
         }
       }
     )

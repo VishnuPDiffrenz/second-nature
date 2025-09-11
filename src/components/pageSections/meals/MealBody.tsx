@@ -353,9 +353,7 @@ const footerCtaDogData = {
 export default function MealBody() {
   const searchParams = useSearchParams();
   const pet = searchParams.get("pet");
-  console.log("Protein in meals page", pet);
   const protein = searchParams.get("protein");
-  console.log("Protein in meals page", protein);
 
   const [selectedPet, setSelectedPet] = useState<"dog" | "cat">(
     pet && ["dog", "cat"].includes(pet) ? (pet as "dog" | "cat") : "dog"

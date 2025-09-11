@@ -130,8 +130,6 @@ export default function EditPetInfo({ setIsEditPetInfo, petData }: EditPetInfoPr
       },
       {
         onSuccess: (data) => {
-          console.log("Pet updated successfully",data);
-
           if(data?.statusCode === 200) {
             toast.success(data.message || "Pet updated successfully");
           } else {
@@ -141,17 +139,13 @@ export default function EditPetInfo({ setIsEditPetInfo, petData }: EditPetInfoPr
           setIsEditPetInfo(false);
         },
         onError: (error) => {
-          console.error("Pet update failed",error);
           toast.error(error.message || "Failed to update pet.Try again.");
-          // setUpdatePetError("Error in updating pet");
           setUpdatePetLoading(false);
           setIsEditPetInfo(true);
         }
       }
     )
   }
-
-  console.log("Pet data in edit pet information page is", petData);
 
   return (
       <div className="lg:w-[100%] grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-4 mt-5 mb-[var(--space-30-60)]">

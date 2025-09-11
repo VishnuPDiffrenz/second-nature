@@ -24,8 +24,6 @@ export default function Page() {
   const [ isEditPetInfo, setIsEditPetInfo ] = useState(false);
   const [ petData, setPetData ] = useState({});
 
-  console.log("Pet details in edit pet information page is", petDetails);
-
   useEffect(() => {
     refetchPetDetails();
   }, [isEditPetInfo]);

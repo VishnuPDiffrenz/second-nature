@@ -34,7 +34,7 @@ export default function Page() {
   const router = useRouter()
 
   const { mutate, isError, error } = useUserLoginHook();
-  const { userDetails, setUserDetails } = useUserStore();
+  const { setUserDetails } = useUserStore();
   const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState<LoginData>({
@@ -98,11 +98,9 @@ export default function Page() {
       },
       {
         onSuccess: (data) => {
-          console.log("Login successful", data);
           const token = data?.result?.token;
           if (token) {
             login(token);
-            console.log("Token stored in Zustand store is", token);
           }
 
           setUserDetails({
@@ -118,150 +116,13 @@ export default function Page() {
           })
           // router.push("/personal-information");
         },
-        onError: (error) => {
-          console.error("Login failed", error);
-        },
+        onError: () => {},
         onSettled: () => {
           setIsLoading(false);
         },
       }
     );
   };
-
-  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target;
-  //   setFormData(prev => ({
-  //     ...prev,
-  //     [name]: value
-  //   }));
-  //   // Clear error when user types
-  //   if (formErrors[name as keyof typeof formErrors]) {
-  //     setFormErrors(prev => ({
-  //       ...prev,
-  //       [name]: ""
-  //     }));
-  //   }
-  // };
-
-  // const handleLogin = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   // const result = nameEmailSchema.safeParse(formData);
-  //   // if (!result.success) {
-  //   //   const fieldErrors = result.error.flatten().fieldErrors;
-  //   //   setErrors({
-  //   //     name: fieldErrors.name?.[0],
-  //   //     email: fieldErrors.email?.[0],
-  //   //   });
-  //   //   return;
-  //   // }
-  //   mutate(
-  //     {
-  //       // name: formData.name,
-  //       // email: formData.email || "",
-  //       // mobile: mobileNumber,
-  //       // isSubscribed,
-  //       // isRegistered,
-  //       userName: "string",
-  //       emailId: "suji@diffrenz.com",
-  //       password: "suji@123",
-  //       isWhatsapp: true,
-  //       isSubscribe: true
-  //     },
-  //     {
-  //       onSuccess: () => {
-  //         // setUserName(formData.name);
-  //         // setEmail(formData.email || "");
-  //         // if (token) {
-  //         //   login(token);
-  //         // }
-  //         // navigate(lastVisitedPage);
-  //       },
-  //     }
-  //   );
-  // };
-
-  // async function loginUser() {
-  //   const url = 'http://194.233.76.88:8092/api/user/login';
-  //   const data = {
-  //     userName: "string",
-  //     emailId: "suji@diffrenz.com",
-  //     password: "suji@123",
-  //     isWhatsapp: true,
-  //     isSubscribe: true,
-  //     additionalProp1: {}
-  //   };
-  
-  //   try {
-  //     const response = await fetch(url, {
-  //       method: 'POST',
-  //       headers: {
-  //         'accept': 'application/json',
-  //         'apikey': 'a',
-  //         'clientkey': 'a',
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify(data)
-  //     });
-  
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! status: ${response.status}`);
-  //     }
-  
-  //     const result = await response.json();
-  //     console.log('Success:', result);
-  //     return result;
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //   }
-  // }
-  
-  // Call the function
-  // loginUser();
-
-  // const handleLogin = (e: React.FormEvent) => {
-  //   e.preventDefault();
-    
-  //   // Basic validation
-  //   const errors = {
-  //     emailId: !formData.emailId ? "Email is required" : "",
-  //     password: !formData.password ? "Password is required" : "",
-  //   };
-    
-  //   setFormErrors(errors);
-    
-  //   if (Object.values(errors).some(error => error)) return;
-  //   setIsLoading(true);
-  //   mutate(
-  //     {
-  //       userName: "string", // Still hardcoded - should this be dynamic?
-  //       emailId: formData.emailId,
-  //       password: formData.password,
-  //       isWhatsapp: true,
-  //       isSubscribe: true
-  //     },
-  //     {
-  //       onSuccess: (data) => {
-  //         // Handle successful login
-  //         console.log("Login successful", data);
-  //         const token = data?.result?.token;
-  //         if(token){
-  //           login(token);
-  //           console.log("Token stored in Zustand store is", token);
-  //         }
-  //         router.push("/personal-information")
-  //       },
-  //       onError: (error) => {
-  //         // API errors are already available via the error from useUserLoginHook
-  //         console.error("Login failed", error);
-  //       },
-  //       onSettled: () => {
-  //         setIsLoading(false);
-  //       }
-  //     }
-  //   );
-  // };
-
-  console.log("User details in login page", userDetails);
   
   return (
     <AuthLayout>

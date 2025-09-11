@@ -9,7 +9,7 @@ import Image from "next/image";
 import BillingDetails from "./BillingDetails";
 import Payment from "./Payment";
 import { useUserStore } from "@/zustand/store/userDataStore";
-import { usePetStore } from "@/zustand/store/petDataStore";
+// import { usePetStore } from "@/zustand/store/petDataStore";
 // import useAuthStore from '@/zustand/store/authDataStore';
 import { useCreateAddressHook } from "@/hooks/subscriptionHooks/createAddressHook";
 import { useGetAddressById } from "@/hooks/subscriptionHooks/getAddressByIdHook";
@@ -55,7 +55,6 @@ export default function ShippingDetail() {
   const { data: addressData, refetch: refetchAddress } = useGetAddressById(
     userDetails.userId || ""
   );
-  const { pets } = usePetStore();
 
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCheckBox, setSelectedCheckBox] = useState(false);
@@ -72,7 +71,6 @@ export default function ShippingDetail() {
   const [shippingSubId, setShippingSubId] = useState<string>("");
   const [billingSubId, setBillingSubId] = useState<string>("");
   const [submittingAddressError, setSubmittingAddressError] = useState("");
-  console.log("Selected check box", selectedCheckBox);
 
   const [shippingFormData, setShippingFormData] = useState<ShippingFormData>({
     firstName: "",
@@ -226,14 +224,6 @@ export default function ShippingDetail() {
         addressData?.result?.billingAddress?.[billingAddressLength] ||
         userDetails?.billingDetails
       ) {
-        console.log(
-          "Shipping address data",
-          addressData?.result?.shippingAddress
-        );
-        console.log(
-          "Billing address data",
-          addressData?.result?.billingAddress
-        );
         setSelectedCheckBox(
           billingFormData.useDifferentBilling ?? false
         )
@@ -314,9 +304,6 @@ export default function ShippingDetail() {
       setShowPaymentDetails(true);
     }
   }, [showPaymentDetails, isShippingEditEnabled, isBillingEditEnabled]);
-
-  console.log("Shipping form data", shippingFormData);
-  console.log("Billing form data", billingFormData);
 
   const validateField = useCallback(
     (name: FormField, value: string): string => {
@@ -505,11 +492,7 @@ export default function ShippingDetail() {
               // formData,
             },
             {
-              onSuccess: (response) => {
-                console.log(
-                  "Shipping address updated by ID successfully",
-                  response
-                );
+              onSuccess: () => {
                 setShowPaymentDetails(true);
                 setIsSubmittingAddress(false);
                 setIsShippingEditEnabled(false);
@@ -517,11 +500,10 @@ export default function ShippingDetail() {
                   console.log("Address data refetched successfully");
                 });
               },
-              onError: (error) => {
+              onError: () => {
                 setSubmittingAddressError(
                   "Error updating shipping address by ID"
                 );
-                console.error("Error updating shipping address by ID:", error);
                 setIsSubmittingAddress(false);
                 setShowPaymentDetails(false);
               },
@@ -539,14 +521,9 @@ export default function ShippingDetail() {
                   useDifferentBilling: false,
                 },
               },
-              // formData,
             },
             {
-              onSuccess: (response) => {
-                console.log(
-                  "Billing address updated by ID successfully",
-                  response
-                );
+              onSuccess: () => {
                 setShowPaymentDetails(true);
                 setIsSubmittingAddress(false);
                 setIsBillingEditEnabled(false);
@@ -554,11 +531,10 @@ export default function ShippingDetail() {
                   console.log("Address data refetched successfully");
                 });
               },
-              onError: (error) => {
+              onError: () => {
                 setSubmittingAddressError(
                   "Error updating billing address by ID"
                 );
-                console.error("Error updating billing address by ID:", error);
                 setIsSubmittingAddress(false);
                 setShowPaymentDetails(false);
               },
@@ -580,11 +556,7 @@ export default function ShippingDetail() {
               // formData,
             },
             {
-              onSuccess: (response) => {
-                console.log(
-                  "Shipping address updated by ID successfully",
-                  response
-                );
+              onSuccess: () => {
                 setShowPaymentDetails(true);
                 setIsSubmittingAddress(false);
                 setIsShippingEditEnabled(false);
@@ -592,11 +564,10 @@ export default function ShippingDetail() {
                   console.log("Address data refetched successfully");
                 });
               },
-              onError: (error) => {
+              onError: () => {
                 setSubmittingAddressError(
                   "Error updating shipping address by ID"
                 );
-                console.error("Error updating shipping address by ID:", error);
                 setIsSubmittingAddress(false);
                 setShowPaymentDetails(false);
               },
@@ -618,11 +589,7 @@ export default function ShippingDetail() {
               // formData,
             },
             {
-              onSuccess: (response) => {
-                console.log(
-                  "Billing address updated by ID successfully",
-                  response
-                );
+              onSuccess: () => {
                 setShowPaymentDetails(true);
                 setIsSubmittingAddress(false);
                 setIsBillingEditEnabled(false);
@@ -630,18 +597,16 @@ export default function ShippingDetail() {
                   console.log("Address data refetched successfully");
                 });
               },
-              onError: (error) => {
+              onError: () => {
                 setSubmittingAddressError(
                   "Error updating billing address by ID"
                 );
-                console.error("Error updating billing address by ID:", error);
                 setIsSubmittingAddress(false);
                 setShowPaymentDetails(false);
               },
             }
           );
         } else {
-          console.log("No address data to update");
           setIsSubmittingAddress(false);
         }
       } else {
@@ -680,10 +645,9 @@ export default function ShippingDetail() {
                 console.log("Address data refetched successfully");
               });
             },
-            onError: (error) => {
+            onError: () => {
               setSubmittingAddressError("Error updating address");
               // setSubmittingAddressError((error as { response?: { data?: { message?: string } } })?.response?.data?.message || "An unexpected error occurred");
-              console.error("Error updating address:", error);
               setIsSubmittingAddress(false);
               setShowPaymentDetails(false);
             },
@@ -700,9 +664,6 @@ export default function ShippingDetail() {
       </div>
     );
   }
-
-  console.log("Pet data in shipping details page is", pets);
-  console.table([isShippingEditEnabled, isBillingEditEnabled]);
 
   return (
     <div className="flex flex-col gap-[var(--space-30-60)]">

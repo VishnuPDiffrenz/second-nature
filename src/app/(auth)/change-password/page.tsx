@@ -18,8 +18,6 @@ export default function Page() {
     setUserId(params.get('emailId') || "");
   }, []);
 
-  console.log("Email id from url", userId);
-
   const { mutate: forgotPassword } = useForgotPassword();
 
   const [isLinkSent, setIsLinkSent] = useState(false);
@@ -42,10 +40,9 @@ export default function Page() {
           setIsLinkSent(true);
           setForgotPasswordError("");
         },
-        onError: (error) => {
+        onError: () => {
           setIsLinkSent(false);
           setForgotPasswordError("Error in changing password");
-          console.log(error);
         }
       }
     )

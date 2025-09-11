@@ -80,7 +80,6 @@ export default function EditAddresses({ selectedAddress, setIsEditing, addressId
     aptSuite: editPrefilledAddress.aptSuite || "",
     municipality: editPrefilledAddress.municipality || "",
   });
-  console.log("Form data in EditAddresses page is", formData);
   const [ shippingFormData, setShippingFormData ] = useState<FormData>(blankFormData);
   const [ billingFormData, setBillingFormData ] = useState<FormData>(blankFormData);
   const [ createAddressError, setCreateAddressError ] = useState("");
@@ -200,8 +199,6 @@ export default function EditAddresses({ selectedAddress, setIsEditing, addressId
     
     if (validateForm()) {
       setIsSubmitting(true);
-      // Here you would typically call your API to update the address
-      console.log('Form submitted:', formData);
 
       if(createOrUpdateAddress === "create") {
         createAddress({
@@ -210,7 +207,6 @@ export default function EditAddresses({ selectedAddress, setIsEditing, addressId
           billingAddress: [billingFormData],
         }, {
           onSuccess: (response) => {
-            console.log("Address created successfully");
             setIsSubmitting(false);
             setCreateAddressError("");
             setIsEditing(false);
@@ -220,23 +216,11 @@ export default function EditAddresses({ selectedAddress, setIsEditing, addressId
             } else {
               toast.error(response.message || "Failed to create address.Try again.");
             }
-            // setShowPaymentDetails(true);
-            // setIsSubmittingAddress(false);
-            // setIsShippingEditEnabled(false);
-            // setIsBillingEditEnabled(false);
-            // refetchAddress().then(() => {
-            //   console.log("Address data refetched successfully");
-            // });
           },
-          onError: (error) => {
-            // setSubmittingAddressError("Error updating address");
-            // setSubmittingAddressError((error as { response?: { data?: { message?: string } } })?.response?.data?.message || "An unexpected error occurred");
-            console.error('Error updating address:', error);
+          onError: () => {
             setIsSubmitting(false);
             setCreateAddressError("Error creating address");
             toast.error("Error creating address");
-            // setIsSubmittingAddress(false);
-            // setShowPaymentDetails(false);
           },
         }); 
       } else if(createOrUpdateAddress === "update") {
@@ -251,7 +235,6 @@ export default function EditAddresses({ selectedAddress, setIsEditing, addressId
         },
         {
           onSuccess: (response) => {
-            console.log("Shipping address updated by ID successfully", response);
             setIsSubmitting(false);
             setUpdateAddressError("");
             setIsEditing(false);
@@ -261,21 +244,11 @@ export default function EditAddresses({ selectedAddress, setIsEditing, addressId
             } else {
               toast.error(response.message || "Failed to update address. Try again.");
             }
-            // setShowPaymentDetails(true);
-            // setIsSubmittingAddress(false);
-            // setIsShippingEditEnabled(false);
-            // refetchAddress().then(() => {
-            //   console.log("Address data refetched successfully");
-            // });
           },
-          onError: (error) => {
-            // setSubmittingAddressError('Error updating shipping address by ID');
-            console.error('Error updating shipping address by ID:', error);
+          onError: () => {
             setIsSubmitting(false);
             setUpdateAddressError("Error updating shipping address by ID");
             toast.error("Error updating shipping address by ID");
-            // setIsSubmittingAddress(false);
-            // setShowPaymentDetails(false);
           }
         }
       )

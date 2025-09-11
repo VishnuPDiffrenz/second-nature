@@ -31,16 +31,6 @@ function LocationContent() {
   const mailVerified = searchParams.get("mailVerified");
   const email = searchParams.get("email");
   const code = searchParams.get("code");
-  console.log("Mail verified", mailVerified, email, code);
-  // setIsEmailVerified(true);
-
-  // useEffect(() => {
-  //   if (mailVerified === "true") {
-  //     setIsEmailVerified(true);
-  //   } else {
-  //     setIsEmailVerified(false);
-  //   }
-  // }, [mailVerified]);
 
   const { mutate: verifyOtp } = useVerifyOtp();
 
@@ -60,10 +50,7 @@ function LocationContent() {
     "Al Wakrah",
   ]
 
-  console.log("Location ", location);
-
   const handleVerifyOTP = () => {
-    console.log("Clicked verify otp", mailVerified, email, code);
     verifyOtp(
       { 
         formData: { 
@@ -76,7 +63,6 @@ function LocationContent() {
       },
     {
       onSuccess: (data) => {
-        console.log("Data", data);
         if(data.statusCode === 200) {
           setIsEmailVerified(true);
           startTransition(() => {
@@ -92,7 +78,6 @@ function LocationContent() {
         // toast.success("OTP verified successfully");
       },
       onError: (error) => {
-        console.log("Error", error);
         setIsEmailVerified(false);
         startTransition(() => {
           router.push("/")

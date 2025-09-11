@@ -25,12 +25,11 @@ export default function Page() {
   const [ currentWeight, setCurrentWeight ] = useState(currentWeightFromStore);
   const [ targetWeight, setTargetWeight ] = useState(targetWeightFromStore);
 
-  console.log("Selected pet in weight page is", selectedPet);
   const softEase = [0.33, 1, 0.68, 1] as [number, number, number, number];
 
   const handleNext = (e: React.FormEvent) => {
     e.preventDefault();
-    if (currentWeight && targetWeight &&currentPetId) {
+    if (currentWeight && targetWeight && currentPetId) {
       setPetDetails(currentPetId, { currentWeight: currentWeight, targetWeight: targetWeight });
       startTransition(() => {
         router.push("/activity");

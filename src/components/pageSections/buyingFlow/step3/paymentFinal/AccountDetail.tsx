@@ -149,24 +149,17 @@ export default function AccountDetail() {
         },
         {
           onSuccess: (data) => {
-            console.log("Create user successful", data);
-            // setShowShippingDetails(true);
             setAccountDetailsError("");
             setIsLoading(false);
-            console.log("User ID is", data.result.userId);
             setUserDetails({ userId: data.result.userId });
-            // setShowContinueButton(false);
-            // setIsUserCreated(true);
             setIsAuthenticated(true);
           },
           onError: (error) => {
-            console.error("Create user failed", error);
             setAccountDetailsError(
               (error as { response?: { data?: { message?: string } } })
                 ?.response?.data?.message || "An unexpected error occurred"
             );
             setIsLoading(false);
-            // setIsUserCreated(false);
           },
           onSettled: () => {
             setIsLoading(false);
@@ -175,8 +168,6 @@ export default function AccountDetail() {
       );
     }
   };
-
-  console.log("Form data is", formData);
 
   return (
     <div className="flex flex-col gap-[var(--space-34-42)]">

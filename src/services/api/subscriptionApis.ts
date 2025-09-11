@@ -7,7 +7,6 @@ export const getBreedDetails = async (catOrDog: string) => {
     );
       return response.data;
     } catch (error) {
-        console.error("Error in getting breed details", error);
         throw error;
     }
 };
@@ -19,7 +18,6 @@ export const getCrossBreedDetails = async (catOrDog: string) => {
     );
       return response.data;
     } catch (error) {
-        console.error("Error in getting breed details", error);
         throw error;
     }
 };
@@ -43,29 +41,17 @@ export const createAddress = async (formData: {
       municipality: string;
       useDifferentBilling?: boolean;
     }>;
-    // isActive?: boolean;
-    // isDeleted?: boolean;
-    // createdOn?: string;
-    // modifiedOn?: string;
-    // additionalProp1?: Record<string, unknown>;
+    
 }) => {
   
-console.log("formData", formData);
 
 try {
     const response = await subscriptionAxiosInstance.post(
       "/api/subscription/createAddress",
       formData
-    //   {
-    //       headers: {
-    //         "Content-Type": "application/x-www-form-urlencoded",
-    //         "Authorization": "Basic Y2tfNWFkNGU4OTA2NGZiYmQ2ZjEyZWEwYWNiNDgwYTFiZGI2YTBmODMwZTpjc19iNGMxYjk4MDgxMWFmYmI3YTEzMGY0YmQzOWMyNDdjMDVhYzNkNzM4"
-    //       },
-    //   }
   );
     return response.data;
   } catch (error) {
-      console.error("Error in create address", error);
       throw error;
   }
 };
@@ -78,7 +64,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in getting all plan details", error);
       throw error;
   }
 };
@@ -91,7 +76,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in getting all protein details", error);
       throw error;
   }
 };
@@ -104,7 +88,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in getting all bowl details", error);
       throw error;
   }
 };
@@ -117,8 +100,6 @@ export const getPrice = async (formData: {
     planType: string;
 }) => {
   
-console.log("Formdata in getPrice", formData);
-
 try {
     const response = await subscriptionAxiosInstance.post(
       "/api/subscription/setting/getPrice",
@@ -126,7 +107,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in getting price", error);
       throw error;
   }
 };
@@ -139,7 +119,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in getting address by id", error);
       throw error;
   }
 };
@@ -152,7 +131,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in getting promo offer", error);
       throw error;
   }
 };
@@ -182,8 +160,6 @@ export const createPet = async (formData: {
     }
 }) => {
   
-console.log("formData", formData);
-
 try {
     const response = await subscriptionAxiosInstance.post(
       "api/subscription/createPet",
@@ -191,7 +167,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in create pet", error);
       throw error;
   }
 };
@@ -261,8 +236,6 @@ export const createSubscription = async (formData: {
     isDeleted: boolean;
 }) => {
   
-console.log("formData", formData);
-
 try {
     const response = await subscriptionAxiosInstance.post(
       "/api/subscription/createSubscription",
@@ -270,7 +243,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in create subscription", error);
       throw error;
   }
 };
@@ -299,7 +271,6 @@ export const updateAddressById = async (
     }
   }
 ) => {
-  console.log("formData in update address by ID", formData);
 
   try {
     const response = await subscriptionAxiosInstance.put(
@@ -308,7 +279,6 @@ export const updateAddressById = async (
     );
     return response.data;
   } catch (error) {
-    console.error("Error in updating address details", error);
     throw error;
   }
 };
@@ -320,7 +290,6 @@ export const getPetDetailsByUserId = async (userId: string) => {
     );
       return response.data;
     } catch (error) {
-        console.error("Error in getting pet details", error);
         throw error;
     }
 };
@@ -356,8 +325,6 @@ export const updatePetByPetId = async (
   }
 ) => {
   
-console.log("formData", formData);
-
 try {
     const response = await subscriptionAxiosInstance.put(
       `/api/subscription/updatePetById/${petId}`,
@@ -365,7 +332,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in updating pet details", error);
       throw error;
   }
 };
@@ -377,7 +343,6 @@ export const getSubscriptionDetailsByUserId = async (userId: string) => {
     );
       return response.data;
     } catch (error) {
-        console.error("Error in getting subscription details", error);
         throw error;
     }
 };
@@ -389,7 +354,6 @@ export const getSubscriptionDetailsByUserIdAndPetId = async (userId: string, pet
     );
       return response.data;
     } catch (error) {
-        console.error("Error in getting subscription details by user ID and pet ID", error);
         throw error;
     }
 };
@@ -401,7 +365,6 @@ export const getInvoiceBySubIdAndPetId = async (subId: string, petId: string) =>
     );
       return response.data;
     } catch (error) {
-        console.error("Error in getting invoice details by pet ID and subscription ID", error);
         throw error;
     }
 };
@@ -428,7 +391,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in change protein", error);
       throw error;
   }
 };
@@ -455,7 +417,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in upgrading plan", error);
       throw error;
   }
 };
@@ -482,7 +443,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in downgrading plan", error);
       throw error;
   }
 };
@@ -514,7 +474,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in pause plan", error);
       throw error;
   }
 };
@@ -543,7 +502,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in cancel plan", error);
       throw error;
   }
 };
@@ -567,7 +525,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in restart plan", error);
       throw error;
   }
 };
@@ -597,7 +554,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in faq", error);
       throw error;
   }
 };
@@ -609,7 +565,6 @@ export const getAllOffers = async () => {
     );
       return response.data;
     } catch (error) {
-        console.error("Error in getting all offers", error);
         throw error;
     }
 };
@@ -621,7 +576,6 @@ export const getAllAllergies = async () => {
     );
       return response.data;
     } catch (error) {
-        console.error("Error in getting pet allergies", error);
         throw error;
     }
 };
@@ -633,7 +587,6 @@ export const getAllEatingPreferences = async () => {
     );
       return response.data;
     } catch (error) {
-        console.error("Error in getting pet eating preferences", error);
         throw error;
     }
 };
@@ -645,7 +598,6 @@ export const getSubscriptionHistoryById = async ({ userId, petId }: { userId: st
     );
       return response.data;
     } catch (error) {
-        console.error("Error in getting subscription history", error);
         throw error;
     }
 };

@@ -6,29 +6,15 @@ export const createUser = async (formData: {
     "emailId": string;
     "contactNo": string;
     "password": string;
-    // "userName": string;
-    // "emailId": string; 
-    // "password": string;
-    // "isWhatsapp": boolean;
-    // "isSubscribe": boolean;
 }) => {
     
-  console.log("formData", formData);
-
   try {
       const response = await userAxiosInstance.post(
         "/api/user/createUser",
         formData
-      //   {
-      //       headers: {
-      //         "Content-Type": "application/x-www-form-urlencoded",
-      //         "Authorization": "Basic Y2tfNWFkNGU4OTA2NGZiYmQ2ZjEyZWEwYWNiNDgwYTFiZGI2YTBmODMwZTpjc19iNGMxYjk4MDgxMWFmYmI3YTEzMGY0YmQzOWMyNDdjMDVhYzNkNzM4"
-      //       },
-      //   }
     );
       return response.data;
     } catch (error) {
-        console.error("Error in user login", error);
         throw error;
     }
 };
@@ -40,7 +26,6 @@ export const getUserDetails = async (userId: string) => {
     );
       return response.data;
     } catch (error) {
-        console.error("Error in getting user details", error);
         throw error;
     }
 };
@@ -56,7 +41,6 @@ export const updateUser = async (
     alternativeMobile: string;
   }
 ) => {
-  console.log("formData", formData);
 
   try {
     const response = await userAxiosInstance.put(
@@ -65,7 +49,6 @@ export const updateUser = async (
     );
     return response.data;
   } catch (error) {
-    console.error("Error in updating user details", error);
     throw error;
   }
 };
@@ -92,7 +75,6 @@ export const changePassword = async ({
     );
     return response.data;
   } catch (error) {
-    console.error("Error in changing password", error);
     throw error;
   }
 };
@@ -113,7 +95,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in sending email address for change password", error);
       throw error;
   }
 };
@@ -138,7 +119,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in change password", error);
       throw error;
   }
 };
@@ -162,7 +142,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in email verification", error);
       throw error;
   }
 };
@@ -189,7 +168,6 @@ try {
   );
     return response.data;
   } catch (error) {
-      console.error("Error in verify OTP", error);
       throw error;
   }
 };

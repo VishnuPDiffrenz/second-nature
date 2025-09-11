@@ -73,8 +73,6 @@ export default function OrderHistory() {
     formattedEndDate = 'Unknown';
   }
 
-  console.log("Plan type in order history page is", planDataFromAPI?.type);
-
   const planCardData = {
     regular: {
       activePlan: {
@@ -299,7 +297,6 @@ export default function OrderHistory() {
 
   // Extract all pet info from subscriptionDetails
   const petInfoList = extractAllPetInfo(subscriptionDetails);
-  console.log("petInfoList in order history", petInfoList);
 
   // const petNames = ["Dog1","Dog2","Cat1"];
 
@@ -331,14 +328,6 @@ export default function OrderHistory() {
       setSelectedPet(selectedPetFromOrderHistory);
     }
   }, [selectedPetFromOrderHistory]);
-
-  console.log("Subscription Details in order history", subscriptionDetails);
-  console.log("Subscription Details By SubId And PetId in order history", subscriptionDetailsBySubIdAndPetId);
-  console.log("Invoice Data in order history", invoiceData);
-  console.log("Card data", subscriptionDetailsBySubIdAndPetId?.result);
-  console.log("Selected Pet in order history", selectedPet);
-  console.log("Selected pet index from store", selectedPetIndexFromOrderHistory);
-
 
   return (
     <>
@@ -544,48 +533,6 @@ export default function OrderHistory() {
         }
       </div>
 
-      {/* <div className="mb-6">
-        <OrderHistoryCard
-          {...planCardData.regular.activePlan}
-          statusLabel={mealConfig.regular.activeMealConfig.label}
-          statusColor={mealConfig.regular.activeMealConfig.tagColor}
-          buttons={mealConfig.regular.activeMealConfig.buttons}
-          planType={mealConfig.regular.activeMealConfig.planType as "regular" | "trial"}
-        />
-      </div> */}
-
-      {/* <Masonry
-        breakpointCols={breakpointColumnsObj}
-        className="flex gap-(--space-20-40) "
-        columnClassName="space-y-(--space-20-40)"
-      >
-        {orderHistoryData.map((order, index) => {
-          const config = orderHistoryConfig[order.status];
-          return (
-            <div key={index}>
-              <OrderHistoryCard
-                {...order}
-                statusLabel={config.label}
-                statusColor={config.tagColor}
-                buttons={config.buttons}
-                planType={config.planType as "regular" | "trial"}
-              />
-            </div>
-          );
-        })}
-      </Masonry> */}
-      {/* <Button onClick={() => setIsProteinPopupOpen(true)}>
-        Change Protein
-      </Button> */}
-      {/* <Button onClick={() => setIsDowngradePlanOpen(true)}>
-        Downgrade Plan
-      </Button> */}
-      {/* <Button onClick={() => setIsCancelPopupOpen(true)}>
-        Cancel Subscription
-      </Button> */}
-      {/* <Button onClick={() => setIsPausePopupOpen(true)}>
-        Pause Deliveries
-      </Button> */}
       <ProteinChangePopup
         isOpen={isProteinPopupOpen}
         onClose={() => setIsProteinPopupOpen(false)}
@@ -616,26 +563,6 @@ export default function OrderHistory() {
       // cancelReason={cancelReason}
       // setCancelReason={setCancelReason}
       />
-
-      {/* <PauseDeliveriesPopup
-        isOpen={isPausePopupOpen}
-        onClose={() => setIsPausePopupOpen(false)}
-        onPause={(startDate, endDate, reason) => {
-          // API call to pause deliveries
-          console.log(
-            `Paused from ${startDate} to ${endDate}. Reason: ${reason}`
-          );
-        }}
-      /> */}
-
-      {/* <PauseDeliveriesPopup
-        isOpen={isPausePopupOpen}
-        onClose={() => setIsPausePopupOpen(false)}
-        onConfirm={(dateRange) => {
-          console.log(`Paused from ${format(dateRange.from, "dd MMM yyyy")} to ${format(dateRange.to, "dd MMM yyyy")}`);
-        }}
-      /> */}
-
     </>
   );
 }

@@ -72,270 +72,6 @@ export default function Payment({ shippingFormData, billingFormData }: PaymentPr
   const [createSubscriptionError, setCreateSubscriptionError] = useState("");
   const [isSubscribing, setIsSubscribing] = useState(false);
 
-  // const handleContinue = () => {
-
-  //   pets.map((pet) => {
-  //     createPet({
-  //       user_id: userDetails.userId,
-  //       name: pet.name || "",
-  //       type: pet.catOrDog || "",
-  //       gender: pet.gender || "",
-  //       location: pet.location || "",
-  //       dateOfBirth: pet.dateOfBirth || "",
-  //       ageMonth: pet.ageMonth || 0,
-  //       ageYear: pet.ageYear || 0,
-  //       breed: pet.breed || "",
-  //       crossBreeds: [ pet.crossBreed || "" ],
-  //       activityLevel: pet.activityLevel || "",
-  //       currentWeight: pet.currentWeight || 0,
-  //       targetWeight: pet.targetWeight || 0,
-  //       plan: {
-  //           type: pet.planType || "",
-  //           duration: pet.planType === "regular" ? "28" : "7",
-  //           price: pet.planPrice || 0,
-  //           protein: pet.protein || "",
-  //           bowlSize: pet.bowlSize || "",
-  //       },
-  //     }, {
-  //       onSuccess: (response) => {
-  //         console.log('Pet created successfully:', response);
-  //         const createdPet: createdPetDetails = {
-  //           petId: response.result.Pets._id,
-  //           name: response.result.Pets.name,
-  //           type: response.result.Pets.type,
-  //           gender: response.result.Pets.gender,
-  //           location: response.result.Pets.location,
-  //           dateOfBirth: response.result.Pets.dateOfBirth,
-  //           ageMonth: response.result.Pets.ageMonth,
-  //           ageYear: response.result.Pets.ageYear,
-  //           breed: response.result.Pets.breed,
-  //           crossBreeds: response.result.Pets.crossBreeds,
-  //           activityLevel: response.result.Pets.activityLevel,
-  //           currentWeight: response.result.Pets.currentWeight ?? 0,
-  //           targetWeight: response.result.Pets.targetWeight ?? 0,
-  //           plan: {
-  //             type: response.result.Pets.plan.type,
-  //             duration: response.result.Pets.plan.duration,
-  //             price: response.result.Pets.plan.price,
-  //             protein: response.result.Pets.plan.protein,
-  //             bowlSize: response.result.Pets.plan.bowlSize
-  //           }
-  //         };
-
-  //           usePetStore.getState().addCreatedPet({
-  //           ...createdPet,
-  //           currentWeight: createdPet.currentWeight ?? 0,
-  //           targetWeight: createdPet.targetWeight ?? 0,
-  //           });
-  //       },
-  //       onError: (error) => {
-  //         console.error('Error updating address:', error);
-  //       },
-  //     });
-  //   })
-
-  //   createSubscription(
-  //     {
-  //       user_id: userDetails.userId,
-  //       account: {
-  //         firstName: userDetails.firstName,
-  //         lastName: userDetails.lastName,
-  //         email: userDetails.emailAddress,
-  //         mobileNumber: userDetails.phoneNumber,
-  //         password: userDetails.password,
-  //       },
-  //       shippingDetails: {
-  //         firstName: shippingFormData.firstName,
-  //         lastName: shippingFormData.lastName,
-  //         contactNo: shippingFormData.mobile ?? "",
-  //         address: shippingFormData.address,
-  //         aptSuite: shippingFormData.aptSuite,
-  //         municipality: shippingFormData.municipality,
-  //       },
-  //       billingDetails: {
-  //         firstName: billingFormData.firstName,
-  //         lastName: billingFormData.lastName,
-  //         contactNo: billingFormData.mobile ?? "",
-  //         address: billingFormData.address,
-  //         aptSuite: billingFormData.aptSuite,
-  //         municipality: billingFormData.municipality,
-  //         useDifferentBilling: billingFormData.useDifferentBilling,
-  //       },
-  //       subscriptiondate: new Date().toISOString().split("T")[0],
-  //       promoCode: "",
-  //       subscribeToOffers: true,
-  //       pets: createdPets,
-  //       payment: {
-  //         method: "credit_card",
-  //         cardNumber: "4111111111111111",
-  //         cardExpiry: "12/25",
-  //         cardCVV: "123",
-  //       },
-  //     },
-  //     {
-  //       onSuccess: () => {
-  //         console.log('Subscription created successfully');
-  //       },
-  //       onError: (error) => {
-  //         console.error('Error in creating subscription', error);
-  //       },
-  //     }
-  //   );
-    
-  // }
-
-  // const handleContinue = async () => {
-  //   type CreatedPet = {
-  //     petId: string;
-  //     name: string;
-  //     type: string;
-  //     gender: string;
-  //     location: string;
-  //     dateOfBirth: string;
-  //     ageMonth: number;
-  //     ageYear: number;
-  //     breed: string;
-  //     crossBreeds: string[];
-  //     activityLevel: string;
-  //     currentWeight: number;
-  //     targetWeight: number;
-  //     plan: {
-  //       type: string;
-  //       duration: string;
-  //       price: number;
-  //       protein: string;
-  //       bowlSize: string;
-  //     };
-  //   };
-
-  //   const createdPets: CreatedPet[] = [];
-
-  //   try {
-  //     // Step 1: Create all pets
-  //     await Promise.all(
-  //       pets.map(
-  //         (pet) =>
-  //           new Promise<void>((resolve, reject) => {
-  //             createPet(
-  //               {
-  //                 user_id: userDetails.userId,
-  //                 name: pet.name || "",
-  //                 type: pet.catOrDog || "",
-  //                 gender: pet.gender || "",
-  //                 location: pet.location || "",
-  //                 dateOfBirth: pet.dateOfBirth || "",
-  //                 ageMonth: pet.ageMonth || 0,
-  //                 ageYear: pet.ageYear || 0,
-  //                 breed: pet.breed || "",
-  //                 crossBreeds: [pet.crossBreed || ""],
-  //                 activityLevel: pet.activityLevel || "",
-  //                 currentWeight: pet.currentWeight || 0,
-  //                 targetWeight: pet.targetWeight || 0,
-  //                 plan: {
-  //                   type: pet.planType || "",
-  //                   duration: pet.planType === "regular" ? "28" : "7",
-  //                   price: pet.planPrice || 0,
-  //                   protein: pet.protein || "",
-  //                   bowlSize: pet.bowlSize || "",
-  //                 },
-  //               },
-  //               {
-  //                 onSuccess: (response) => {
-  //                   console.log("✅ Pet created:", response.result.Pets);
-
-  //                   const p = response.result.Pets;
-  //                   const createdPet = {
-  //                     petId: p._id,
-  //                     name: p.name,
-  //                     type: p.type,
-  //                     gender: p.gender,
-  //                     location: p.location,
-  //                     dateOfBirth: p.dateOfBirth,
-  //                     ageMonth: p.ageMonth,
-  //                     ageYear: p.ageYear,
-  //                     breed: p.breed,
-  //                     crossBreeds: p.crossBreeds,
-  //                     activityLevel: p.activityLevel,
-  //                     currentWeight: p.currentWeight ?? 0,
-  //                     targetWeight: p.targetWeight ?? 0,
-  //                     plan: {
-  //                       type: p.plan.type,
-  //                       duration: p.plan.duration,
-  //                       price: p.plan.price,
-  //                       protein: p.plan.protein,
-  //                       bowlSize: p.plan.bowlSize,
-  //                     },
-  //                   };
-
-  //                   usePetStore.getState().addCreatedPet(createdPet);
-  //                   createdPets.push(createdPet);
-  //                   resolve();
-  //                 },
-  //                 onError: (error) => {
-  //                   console.error("❌ Failed to create pet:", pet.name, error);
-  //                   reject(`Failed to create pet "${pet.name}"`);
-  //                 },
-  //               }
-  //             );
-  //           })
-  //       )
-  //     );
-
-  //     // Step 2: All pets created successfully
-  //     console.log("✅ All pets created. Proceeding to create subscription...");
-
-  //     createSubscription(
-  //       {
-  //         user_id: userDetails.userId,
-  //         account: {
-  //           firstName: userDetails.firstName,
-  //           lastName: userDetails.lastName,
-  //           email: userDetails.emailAddress,
-  //           mobileNumber: userDetails.phoneNumber,
-  //           password: userDetails.password,
-  //         },
-  //         shippingDetails: {
-  //           firstName: shippingFormData.firstName,
-  //           lastName: shippingFormData.lastName,
-  //           contactNo: shippingFormData.mobile ?? "",
-  //           address: shippingFormData.address,
-  //           aptSuite: shippingFormData.aptSuite,
-  //           municipality: shippingFormData.municipality,
-  //         },
-  //         billingDetails: {
-  //           firstName: billingFormData.firstName,
-  //           lastName: billingFormData.lastName,
-  //           contactNo: billingFormData.mobile ?? "",
-  //           address: billingFormData.address,
-  //           aptSuite: billingFormData.aptSuite,
-  //           municipality: billingFormData.municipality,
-  //           useDifferentBilling: billingFormData.useDifferentBilling,
-  //         },
-  //         subscriptiondate: new Date().toISOString().split("T")[0],
-  //         promoCode: "",
-  //         subscribeToOffers: true,
-  //         pets: createdPets,
-  //         payment: {
-  //           method: "credit_card",
-  //           cardNumber: "4111111111111111",
-  //           cardExpiry: "12/25",
-  //           cardCVV: "123",
-  //         },
-  //       },
-  //       {
-  //         onSuccess: () => {
-  //           console.log("✅ Subscription created successfully");
-  //         },
-  //         onError: (error) => {
-  //           console.error("❌ Failed to create subscription:", error);
-  //         },
-  //       }
-  //     );
-  //   } catch (error) {
-  //     console.error("🚨 Error during pet creation or subscription flow:", error);
-  //   }
-  // };
-
   const handleContinue = async () => {
     const createdPets: CreatedPet[] = [];
 
@@ -404,7 +140,6 @@ export default function Payment({ shippingFormData, billingFormData }: PaymentPr
               },
               onError: (error) => {
                 setCreatePetError("Error in creating pet");
-                console.error('Failed to create pet:', error);
                 reject(error);
               }
             }
@@ -413,9 +148,6 @@ export default function Payment({ shippingFormData, billingFormData }: PaymentPr
       }
 
       clearPetDetails();
-
-      console.log("Created pets from API", createdPetsFromAPI);
-
       // After all pets created, create subscription
       createSubscription(
         {
@@ -470,15 +202,13 @@ export default function Payment({ shippingFormData, billingFormData }: PaymentPr
         },
         {
           onSuccess: () => {
-            console.log("Subscription created successfully");
             setIsSubscribing(false);
             removeCreatedPetsFromAPI();
             setTotalPrice(0);
             router.push("/");
           },
-          onError: (error) => {
+          onError: () => {
             setCreateSubscriptionError("Error in creating subscription");
-            console.error("Failed to create subscription:", error);
             setIsSubscribing(false);},
         }
       );

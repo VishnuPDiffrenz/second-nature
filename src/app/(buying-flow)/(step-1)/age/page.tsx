@@ -31,7 +31,6 @@ export default function Age() {
   const [ month, setMonth ] = useState(0);
   const [ year, setYear ] = useState(0);
 
-  console.log("Selected Pet in age page is", selectedPet);
   const softEase = [0.33, 1, 0.68, 1] as [number, number, number, number];
 
   const handleNext = (e: React.FormEvent) => {
@@ -45,9 +44,6 @@ export default function Age() {
         startTransition(() => {
           router.push("/weight");
         })
-        // router.push("/weight");
-      } else {
-        console.log("Please select a valid date of birth");
       }
     } else if (mode === "approx") {
       if ((month || year) && currentPetId) {
@@ -55,10 +51,7 @@ export default function Age() {
         startTransition(() => {
           router.push("/weight");
         })
-        // router.push("/weight");
-      } else {
-        console.log("Please select a valid age");
-      }    
+      } 
     } 
   }
 

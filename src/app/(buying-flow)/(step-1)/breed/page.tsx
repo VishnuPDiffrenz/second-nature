@@ -44,43 +44,21 @@ export default function Breed() {
   const softEase = [0.33, 1, 0.68, 1] as [number, number, number, number];
 
   useEffect(() => {
-    console.log("Breed is", breed, "Cross Breed is", crossBreed);
     if (selectedCrossBreed) {
       setShowCrossBreed(true);
     }
   }, []);
-  //   if (breedData?.result && selectedPet?.breed) {
-  //     // Find the exact match (case-insensitive)
-  //     const matchedBreed = breedData.result.find(
-  //       (opt: string) => opt.toLowerCase() === (selectedPet?.breed ?? "").toLowerCase()
-  //     );
-  //     setSelectedBreed(matchedBreed || "");
-  //   }
-
-  //   if (crossBreedData?.result && selectedPet?.crossBreed) {
-  //     const matchedCrossBreed = crossBreedData.result.find(
-  //       (opt: string) => opt.toLowerCase() === (selectedPet?.crossBreed ?? "").toLowerCase()
-  //     );
-  //     setSelectedCrossBreed(matchedCrossBreed || "");
-  //     setShowCrossBreed(!!matchedCrossBreed);
-  //   }
-  // }, [breedData, crossBreedData, selectedPet]);
 
   useEffect(() => {
     if (breedData?.result && selectedPet?.breed) {
       // Normalize both the stored value and options for comparison
       const storedBreed = selectedPet?.breed;
-      console.log("Stored breed:", storedBreed, breedData.result);
       const matchedBreed = breedData.result.find(
         (opt: string) => opt.trim() === storedBreed
       );
 
       if (matchedBreed) {
         setSelectedBreed(matchedBreed);
-        console.log("Matched breed:", matchedBreed);
-      } else {
-        console.warn("No match found for breed:", selectedPet.breed);
-        console.log("Available breeds:", breedData.result);
       }
     }
   }, [breedData, selectedPet?.breed]);
@@ -100,14 +78,6 @@ export default function Breed() {
       setIDontKnowBreed(false);
     }
   }, [selectedBreed, selectedCrossBreed]);
-
-  // useEffect(() => {
-  //   if(!selectedBreed && !iDontKnowBreed){
-  //     setIDontKnowBreed(false);
-  //   } else if (!selectedCrossBreed){
-  //     setIDontKnowBreed(false);
-  //   }
-  // },[selectedBreed,selectedCrossBreed])
 
   const handleNext = (e: React.FormEvent) => {
     e.preventDefault();
@@ -129,14 +99,6 @@ export default function Breed() {
       return;
     }
 
-    console.log(
-      "Selected Breed is",
-      selectedBreed,
-      "Selected Cross Breed is",
-      selectedCrossBreed,
-      "Selected pet ID is",
-      currentPetId
-    );
     if (selectedBreed && currentPetId) {
       setPetDetails(currentPetId, {
         breed: selectedBreed,
@@ -153,21 +115,6 @@ export default function Breed() {
     setShowCrossBreed(!showCrossBreed);
   };
 
-  // const handleIdontKnowBreed = (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   e.preventDefault();
-  //   setSelectedBreed("");
-  //   setSelectedCrossBreed("");
-  //   setShowCrossBreed(false);
-  //   setIDontKnowBreed(true);
-
-  //   // if (currentPetId) {
-  //   //   setPetDetails(currentPetId, {
-  //   //     breed: "",
-  //   //     crossBreed: ""
-  //   //   });
-  //   // }
-  // };
-
   const handleIDontKnowBreedRadioSelect = () => {
     setSelectedBreed("");
     setSelectedCrossBreed("");
@@ -179,8 +126,6 @@ export default function Breed() {
     setSelectedCrossBreed("");
     setShowCrossBreed(false);
   };
-
-  console.log("I don't know breed is", iDontKnowBreed);
 
   return (
     <BuyingFlowLayout step={1}>

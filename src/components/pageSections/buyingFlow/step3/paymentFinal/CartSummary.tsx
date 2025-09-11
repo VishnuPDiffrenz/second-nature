@@ -11,7 +11,6 @@ export default function CartSummary() {
   const { pets, setTotalPrice } = usePetStore();
   const { data: offers } = useGetAllOffers();
   const discountPercentage = offers?.result?.[0]?.discount_percent || 0;
-  console.log("Discount percentage:", discountPercentage);
 
   const totalPrice = pets.reduce((sum, pet) => {
     const price = pet.planType === "Regular"
