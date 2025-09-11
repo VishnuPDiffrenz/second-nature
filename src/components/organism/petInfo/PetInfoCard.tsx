@@ -23,8 +23,6 @@ export default function PetInfoCard({ petDetails, setIsEditPetInfo, setPetData }
   const [ ageHeading, setAgeHeading ] = useState("");
   const [ ageContent, setAgeContent ] = useState("");
 
-  console.log("Pet type", petDetails?.type);
-
   useEffect(() => {
     if(petDetails?.ageYear !== 0 && petDetails?.ageYear !== 0 && petDetails?.ageYear !== ""){
       setAgeHeading("Age");

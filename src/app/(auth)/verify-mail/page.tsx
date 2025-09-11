@@ -104,26 +104,13 @@ export default function VerifyEmail() {
             }else{
               toast.error(data?.message || "Email verification failed");
             }
-
-            console.log("Email verification successful", data);
           },
           onError: (error) => {
             toast.error((error as { response?: { data?: { message?: string } } })?.response?.data?.message || "Error in email verification");
-            console.error("Error in email verification", error);
           }
         }
       );
-
-      // startTransition(() => {
-      //   router.push("/location");
-      // })
-      // router.push("/checkout");
     }
-
-    // setTimeout(() => {
-    //   // setIsSubmitting(false);
-    //   router.push("/checkout");
-    // }, 500);
   };
 
   return (

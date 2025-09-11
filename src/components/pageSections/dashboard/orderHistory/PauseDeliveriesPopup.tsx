@@ -40,24 +40,14 @@ export const PauseDeliveriesPopup: React.FC<PauseDeliveriesPopupProps> = ({
   onConfirm,
   // initialRange,
 }) => {
-  // const [selectedOption, setSelectedOption] = useState<WeekOption>("1week");
   const today = new Date();
-
-  console.log("Today", today);
 
   const [isWeekSelected, setIsWeekSelected] = useState(true);
   const [dateRange, setDateRange] = useState<{ from: string; to: string }>({
     from: "",
     to: "",
   });
-  // const [dateRangeFromCalender, setDateRangeFromCalender] = useState<{ from: Date; to: Date } | null>(null);
-  // const [dateRangeFromCalender] = useState<{ from: Date; to: Date } | null>(null);
-  // const [range, setRange] = useState<{ from: Date | undefined; to?: Date | undefined }>({
-  //   from: undefined,
-  //   to: undefined,
-  // });
   const [weeks, setWeeks] = useState<number>(0);
-
   const [reason,] = useState<string>("");
   const [showProceedCheck, setShowProceedCheck] = useState<boolean>(false);
 
@@ -66,7 +56,6 @@ export const PauseDeliveriesPopup: React.FC<PauseDeliveriesPopupProps> = ({
 
     const parsedDate = new Date(dateString);
     if (isNaN(parsedDate.getTime())) {
-      console.error("Invalid date format:", dateString);
       return "Invalid date";
     }
 
@@ -79,45 +68,6 @@ export const PauseDeliveriesPopup: React.FC<PauseDeliveriesPopupProps> = ({
 
   const formattedFromDate = dateRange.from ? formatDate(dateRange.from) : "";
   const formattedToDate = dateRange.to ? formatDate(dateRange.to) : "";
-
-  // let formattedFromDate = "";
-  // let formattedToDate = "";
-
-  // if (dateRange.from !== "") {
-  //   // 1. SAFELY PARSE THE DATE (Handles YYYY-MM-DD or ISO formats)
-  //   const parsedDate = new Date(dateRange.from);
-
-  //   // 2. VALIDATE THE DATE
-  //   if (!isNaN(parsedDate.getTime())) { // Check if date is valid
-  //     // 3. FORMAT AS "DD MMM YYYY" (e.g., "13 Mar 2025")
-  //     formattedFromDate = parsedDate.toLocaleDateString('en-GB', {
-  //       day: 'numeric',
-  //       month: 'short',
-  //       year: 'numeric'
-  //     }).replace(/\s+/g, '.');
-  //   } else {
-  //     console.error("Invalid date format:", dateRange.from);
-  //     formattedFromDate = "Invalid date"; // Fallback
-  //   }
-  // }
-
-  // if (dateRange.to !== "") {
-  //   // 1. SAFELY PARSE THE DATE (Handles YYYY-MM-DD or ISO formats)
-  //   const parsedDate = new Date(dateRange.to);
-
-  //   // 2. VALIDATE THE DATE
-  //   if (!isNaN(parsedDate.getTime())) { // Check if date is valid
-  //     // 3. FORMAT AS "DD MMM YYYY" (e.g., "13 Mar 2025")
-  //     formattedToDate = parsedDate.toLocaleDateString('en-GB', {
-  //       day: 'numeric',
-  //       month: 'short',
-  //       year: 'numeric'
-  //     }).replace(/\s+/g, '.');
-  //   } else {
-  //     console.error("Invalid date format:", dateRange.to);
-  //     formattedToDate = "Invalid date"; // Fallback
-  //   }
-  // }
 
   const handleSubmit = () => {
     onConfirm(dateRange, 0, reason);

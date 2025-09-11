@@ -43,11 +43,6 @@ export default function PlanCard({
     useGetAllProtein();
   const { data: bowlData } = useGetAllBowl();
 
-  // const router = useRouter();
-
-  console.log("Protein in plan card", protein);
-  console.log("Protein data in plan card", proteinData?.result);
-
   return (
     <div
       className={cn(

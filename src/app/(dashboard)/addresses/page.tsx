@@ -24,9 +24,6 @@ export default function Address() {
   const { data: addressData, refetch: refetchAddress } = useGetAddressById(userId || "");
   const addressId = addressData?.result?._id;
 
-  console.log("Address data in edit address page is", addressData);
-
-
   const [ isEditing, setIsEditing ] = useState(false);
   // const [ isShippingAddressEditing, setIsShippingAddressEditing ] = useState(false);
   // const [ isBillingAddressEditing, setIsBillingAddressEditing ] = useState(false);

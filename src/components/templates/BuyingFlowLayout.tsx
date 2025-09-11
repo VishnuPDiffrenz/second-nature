@@ -24,14 +24,10 @@ export default function BuyingFlowLayout({
   const { isAuthenticated, isEmailVerified } = useAuthStore();
 
   if (isLocationPage) {
-    console.log("Page redirection",isAuthenticated, isEmailVerified);
   } else if (!isAuthenticated && !isEmailVerified) {
-    console.log("Page redirection",isAuthenticated, isEmailVerified);
     startTransition(() => {
       router.push("/verify-mail");
     });
-  } else {
-    console.log("Page redirection",isAuthenticated, isEmailVerified);
   }
   
   const { pets, selectedPetIndex, setSelectedPetIndex, removePet } = usePetStore();

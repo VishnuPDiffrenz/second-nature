@@ -56,14 +56,10 @@ export default function Page() {
   const router = useRouter();
 
   const { data: planData, isLoading: isPlanLoading } = useGetAllPlan();
-  const { data: proteinData, isLoading: isProteinLoading } = useGetAllProtein();
-  const { data: bowlData, isLoading: isBowlLoading } = useGetAllBowl();
+  const { isLoading: isProteinLoading } = useGetAllProtein();
+  const { isLoading: isBowlLoading } = useGetAllBowl();
   const { data: offers } = useGetAllOffers();
   const { mutate } = useGetPriceHook();
-  // const { data: plans, isLoading, error } = useGetAllPlan();
-  console.log("PlanData", planData);
-  console.log("ProteinData", proteinData);
-  console.log("BowlData", bowlData);
 
   const discountPercentage = offers?.result?.[0]?.discount_percent || 10;
 
@@ -211,7 +207,6 @@ export default function Page() {
         },
         {
           onSuccess: (data) => {
-            console.log("Get price successful", data);
             if (selectedPlan === "Regular") {
               setRegularPrice(data?.result?.price);
             } else if (selectedPlan === "Trial") {
@@ -220,8 +215,7 @@ export default function Page() {
             setIsRegularPriceLoading(false);
             setIsTrialPriceLoading(false);
           },
-          onError: (error) => {
-            console.error("Get price failed", error);
+          onError: () => {
             setIsRegularPriceLoading(false);
             setIsTrialPriceLoading(false);
           },
@@ -241,16 +235,6 @@ export default function Page() {
     selectedPet?.currentWeight,
     selectedPet?.activityLevel,
   ]);
-
-  console.log("Selected pet in choose our plans page is", selectedPet);
-  console.log("Selected pet current weight is", selectedPet?.currentWeight);
-  console.log("Selected pet activity level is", selectedPet?.activityLevel);
-  console.log("Current pet id in choose our plans page is", currentPetId);
-  console.log("Selected Plan", selectedPlan);
-  console.log("Regular Protein", regularProtein);
-  console.log("Regular Bowl Size", regularBowlSize);
-  console.log("Trial Protein", trialProtein);
-  console.log("Trial Bowl Size", trialBowlSize);
 
   return (
     <BuyingFlowLayout step={3}>

@@ -34,8 +34,6 @@ export default function PromoCode({ totalPrice, productPrice, setProductPrice, d
     
     try {
       const { data } = await refetchPromoOffer();
-      // setPromoMessage(data?.message || "");
-      console.log("Promo code response:", data);
       
       if (data?.result) {
         const discountAmount = calculateDiscount(productPrice, data?.result?.discount_percent);
@@ -43,16 +41,12 @@ export default function PromoCode({ totalPrice, productPrice, setProductPrice, d
         setProductPrice(productPrice - discountAmount);
         toast.success("Promo code applied successfully");
         setIsApplied(true);
-        console.log("Promo applied successfully. New price:", productPrice - discountAmount);
       } else {
         toast.error("Invalid or expired promo code");
-        console.log("Invalid or expired promo code");
-        // Show error to user
       }
     } catch (error) {
       toast.error("Error applying promo code");
       console.error("Error applying promo code:", error);
-      // Show error to user
     }
   };
 

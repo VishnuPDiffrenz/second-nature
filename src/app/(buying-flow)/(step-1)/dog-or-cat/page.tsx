@@ -15,11 +15,7 @@ export default function DogOrCat() {
 
   const router = useRouter();
 
-  // const [selectedPet, setSelectedPet] = useState("");
-  // const [, setCatName] = useState("");
   const {
-    pets,
-    // currentPetId,
     noOfPets,
     selectedPetIndex,
     setCurrentPet,
@@ -27,8 +23,6 @@ export default function DogOrCat() {
     addNewPet,
     setSelectedPetIndex,
   } = usePetStore();
-
-  console.log("Pets after adding new pet ", pets);
 
   useEffect(() => {
     setSelectedPetIndex(selectedPetIndex || 0); // Reset selected pet index
@@ -38,9 +32,6 @@ export default function DogOrCat() {
   const [petName, setPetName] = useState("");
   const [catName, setCatName] = useState("");
   const [dogName, setDogName] = useState("");
-
-  // Get the current pet's details
-  // const currentPetDetails = currentPetId ? pets[currentPetId] : null;
 
   const handlePetSelection = (type: "dog" | "cat") => {
     setPetType(type);
@@ -55,21 +46,19 @@ export default function DogOrCat() {
     }
   };
 
-  const handleAddMorePets = () => {
-    if (petType && petName.trim() !== "") {
-      const newPetId = addNewPet({
-        catOrDog: petType,
-        name: petType === "dog" ? dogName : catName,
-      });
-      setCurrentPet(newPetId);
-      setPetType("");
-      setPetName("");
-      setDogName("");
-      setCatName("");
-    }
-  };
-
-  console.log(handleAddMorePets)
+  // const handleAddMorePets = () => {
+  //   if (petType && petName.trim() !== "") {
+  //     const newPetId = addNewPet({
+  //       catOrDog: petType,
+  //       name: petType === "dog" ? dogName : catName,
+  //     });
+  //     setCurrentPet(newPetId);
+  //     setPetType("");
+  //     setPetName("");
+  //     setDogName("");
+  //     setCatName("");
+  //   }
+  // };
 
   const handleNext = (e: React.FormEvent) => {
     e.preventDefault();
@@ -124,25 +113,8 @@ export default function DogOrCat() {
     setPetName("");
     setDogName("");
     setCatName("");
-    // if (petType && petName.trim() !== "") {
-    //   const newPetId = addNewPet({ catOrDog: petType, name: petName });
-    //   setCurrentPet(newPetId);
-    //   setPetType("");
-    //   setPetName("");
-    // }
 
-    // if (petType && petName.trim() !== "" && currentPetId) {
-    //   setPetDetails(currentPetId, { catOrDog: petType, name: petName });
-    //   router.push("/gender");
-    // } else {
-    //   router.push("/gender");
-    // }
-
-    // setSelectedPetIndex(0); // Reset selected pet index to 0
   };
-
-  // const isNextDisable =
-  //   pets?.length > 0 ? false : !(petType && petName.trim() !== "");
 
   const isNextDisable = !(petType && petName.trim() !== "");
 

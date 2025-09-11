@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { usePetStore } from "@/zustand/store/petDataStore";
+// import { usePetStore } from "@/zustand/store/petDataStore";
 import { useUserStore } from "@/zustand/store/userDataStore";
 import { startTransition } from "react";
 import { useEmailVerification } from "@/hooks/userHooks/emailVerificationHook";
@@ -28,8 +28,8 @@ export default function Page() {
   const router = useRouter();
   const { mutate: emailVerification } = useEmailVerification();
 
-  const { pets, selectedPetIndex } = usePetStore();
-  const selectedPet = selectedPetIndex !== null ? pets[selectedPetIndex] : null; // Handle null case for selectedPetIndex
+  // const { pets, selectedPetIndex } = usePetStore();
+  // const selectedPet = selectedPetIndex !== null ? pets[selectedPetIndex] : null; // Handle null case for selectedPetIndex
   //   const currentPetId = selectedPet ? selectedPet.id : null;
   //   const selectedPetName = selectedPet ? selectedPet.name : null;
   //   const activityLevel = selectedPet ? selectedPet.activityLevel : "";
@@ -118,39 +118,14 @@ export default function Page() {
             }else{
               toast.error(data?.message || "Email verification failed");
             }
-
-            console.log("Email verification successful", data);
           },
           onError: (error) => {
             toast.error((error as { response?: { data?: { message?: string } } })?.response?.data?.message || "Error in email verification");
-            console.error("Error in email verification", error);
           }
         }
       );
-
-      // startTransition(() => {
-      //   router.push("/location");
-      // })
-      // router.push("/checkout");
     }
-
-    // setTimeout(() => {
-    //   // setIsSubmitting(false);
-    //   router.push("/checkout");
-    // }, 500);
   };
-
-  // const handleNext = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   // if (selectedActivity && currentPetId) {
-  //   //   setPetDetails(currentPetId, { activityLevel: selectedActivity })
-  //   //   router.push("/add-more-pets");
-  //   // }
-  //   router.push("/checkout");
-  // }
-
-  console.log("Selected pet in user details page is", selectedPet);
-  console.log("User details in user details page is", userDetails);
 
   return (
     <BuyingFlowLayout step={1}>

@@ -12,52 +12,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useGetSubscriptionHistoryById } from "@/hooks/subscriptionHooks/getSubscriptionHistoryById";
 
-// const historyData = [
-//     {
-//         date: "18.08.2025",
-//         planType: "Regular",
-//         protein: "Chicken",
-//         bowlSize: "Half Bowl",
-//     },
-//     {
-//         date: "12.07.2025",
-//         planType: "Trial",
-//         protein: "Beef",
-//         bowlSize: "Full Bowl",
-//     },
-//     {
-//         date: "18.08.2025",
-//         planType: "Regular",
-//         protein: "Chicken",
-//         bowlSize: "Half Bowl",
-//     },
-//     {
-//         date: "12.07.2025",
-//         planType: "Regular",
-//         protein: "Beef",
-//         bowlSize: "Full Bowl",
-//     },
-//     {
-//         date: "18.08.2025",
-//         planType: "Regular",
-//         protein: "Chicken",
-//         bowlSize: "Half Bowl",
-//     },
-//     {
-//         date: "12.07.2025",
-//         planType: "Trial",
-//         protein: "Beef",
-//         bowlSize: "Full Bowl",
-//     },
-//     {
-//         date: "18.08.2025",
-//         planType: "Regular",
-//         protein: "Chicken",
-//         bowlSize: "Half Bowl",
-//     },
-
-// ];
-
 export default function OrderHistory() {
   const router = useRouter();
 
@@ -86,11 +40,9 @@ export default function OrderHistory() {
       userId: userId ?? "",
       petId: selectedPetId ?? selectedPet?.petId ?? "",
     });
-  console.log("subscriptionHistory", subscriptionHistory);
 
   const dataFromAPI = subscriptionDetailsBySubIdAndPetId?.result;
-  const planDataFromAPI =
-    subscriptionDetailsBySubIdAndPetId?.result?.pets[0]?.plan;
+  // const planDataFromAPI = subscriptionDetailsBySubIdAndPetId?.result?.pets[0]?.plan;
   const planStartDateFromAPI = dataFromAPI?.subscriptiondate;
   const planEndDateFromAPI = dataFromAPI?.subscriptionEndDate;
   // const formattedStartDate = "DD MM YY";
@@ -127,8 +79,6 @@ export default function OrderHistory() {
   //     formattedEndDate = 'Unknown';
   // }
 
-  console.log("Plan type in order history page is", planDataFromAPI?.type);
-
   type Pet = { petId?: string; name?: string };
   type SubscriptionRecord = { _id: string; pets?: Pet[] };
   type PetInfo = { name: string; petId: string; subId: string };
@@ -163,7 +113,6 @@ export default function OrderHistory() {
 
   // Extract all pet info from subscriptionDetails
   const petInfoList = extractAllPetInfo(subscriptionDetails);
-  console.log("petInfoList in order history", petInfoList);
 
   // const petNames = ["Dog1","Dog2","Cat1"];
 

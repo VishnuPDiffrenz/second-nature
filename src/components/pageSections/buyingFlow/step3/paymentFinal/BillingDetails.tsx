@@ -155,48 +155,6 @@ export default function BillingDetails({
     }));
   };
 
-  // const validateForm = () => {
-  //   const newErrors: Record<string, string> = {};
-  //   let isValid = true;
-
-  //   Object.keys(billingFormData).forEach(key => {
-  //     if (key !== 'aptSuite') { // aptSuite is optional
-  //       const error = validateField(key, billingFormData[key as keyof BillingFormData]);
-  //       if (error) {
-  //         newErrors[key] = error;
-  //         isValid = false;
-  //       }
-  //     }
-  //   });
-
-  //   setErrors(newErrors);
-  //   // Mark all fields as touched to show errors
-  //   setTouched({
-  //     firstName: true,
-  //     lastName: true,
-  //     mobile: true,
-  //     address: true,
-  //     aptSuite: true,
-  //     municipality: true
-  //   });
-
-  //   return isValid;
-  // };
-
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   if (validateForm()) {
-  //     // Proceed with shipping details submission
-  //     console.log('Shipping details submitted:', billingFormData);
-  //     setShowPaymentDetails(true);
-  //   }
-  // };
-
-  // const handleContinue = (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   e.preventDefault();
-  //   setShowPaymentDetails(true);
-  // }
-
   return (
     <div className="flex flex-col gap-[var(--space-30-60)]">
       <div className="flex justify-between">

@@ -22,7 +22,6 @@ const GenderPage = () => {
 
   const { pets, selectedPetIndex, setPetDetails } = usePetStore();
   const selectedPet = selectedPetIndex !== null ? pets[selectedPetIndex] : null; // Handle null case for selectedPetIndex
-  console.log("Selected Pet in gender page is ", selectedPet);
   const currentPetId = selectedPet ? selectedPet.id : null; // Get the current pet ID
   const selectedPetName = selectedPet ? selectedPet.name : null;
   const selectedPetGender = selectedPet ? selectedPet.gender : "";
@@ -75,7 +74,6 @@ const GenderPage = () => {
             className="flex items-center gap-2.5 sm:gap-8   w-full sm:w-[70%] lg:w-[50%] xl:w-[45%] 2xl:w-full max-w-[683px]">
             {options.map((option) => {
               const isSelected = gender.toLowerCase() === option.toLowerCase();
-              console.log("isSelected in gender page is", isSelected, "gender is", gender.toLowerCase(), "option is", option.toLowerCase());
               return (
                 <button
                   key={option}
